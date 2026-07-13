@@ -1,0 +1,8 @@
+artifacts/
+cache/
+coverage/
+node_modules/
+typechain-types/
+dist/
+package-lock.json
+vulnerability.md

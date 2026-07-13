@@ -1,0 +1,32 @@
+# Foundry
+/cache/
+/out/
+/broadcast/
+/lib/
+
+# Hardhat
+/artifacts/
+/coverage/
+/typechain/
+
+# Cobertura y perfiles
+/coverage/
+/lcov.info
+
+# Dependencias y herramientas auxiliares
+/node_modules/
+/.idea/
+package-lock.json
+
+# Variables y datos locales
+.env
+.env.*
+!.env.example
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Documentación interna
+vulnerability.md
