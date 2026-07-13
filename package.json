@@ -12,7 +12,7 @@
         "ci": "npm run lint && npm run compile && npm test"
     },
     "devDependencies": {
-        "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+        "@nomicfoundation/hardhat-toolbox": "^7.0.0",
         "hardhat": "^2.26.3",
         "prettier": "^3.6.2",
         "prettier-plugin-solidity": "^1.4.3",
