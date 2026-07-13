@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {EquinoxERC20} from "../token/EquinoxERC20.sol";
+import { EquinoxERC20 } from "../token/EquinoxERC20.sol";
 
 contract MockERC20 is EquinoxERC20 {
     constructor(

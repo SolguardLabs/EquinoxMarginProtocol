@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {FixedPoint} from "../libraries/FixedPoint.sol";
+import { FixedPoint } from "../libraries/FixedPoint.sol";
 
 library RiskScenarioEngine {
     using FixedPoint for uint256;

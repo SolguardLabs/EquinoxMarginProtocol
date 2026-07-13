@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IEquinoxToken} from "../interfaces/IEquinoxToken.sol";
+import { IEquinoxToken } from "../interfaces/IEquinoxToken.sol";
 
 contract EquinoxERC20 is IEquinoxToken {
     string private _name;

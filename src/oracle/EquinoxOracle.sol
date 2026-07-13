@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IEquinoxOracle} from "../interfaces/IEquinoxOracle.sol";
+import { IEquinoxOracle } from "../interfaces/IEquinoxOracle.sol";
 
 contract EquinoxOracle is IEquinoxOracle {
     struct PriceData {
@@ -49,7 +49,7 @@ contract EquinoxOracle is IEquinoxOracle {
 
     function postPrice(bytes32 asset, uint256 price) external onlyPublisher {
         if (price == 0) revert ZeroPrice();
-        _prices[asset] = PriceData({price: price, updatedAt: block.timestamp});
+        _prices[asset] = PriceData({ price: price, updatedAt: block.timestamp });
         emit PricePosted(asset, price, block.timestamp, msg.sender);
     }
 
@@ -60,7 +60,7 @@ contract EquinoxOracle is IEquinoxOracle {
         require(assets.length == prices.length, "ORACLE_LENGTH");
         for (uint256 i = 0; i < assets.length; i++) {
             if (prices[i] == 0) revert ZeroPrice();
-            _prices[assets[i]] = PriceData({price: prices[i], updatedAt: block.timestamp});
+            _prices[assets[i]] = PriceData({ price: prices[i], updatedAt: block.timestamp });
             emit PricePosted(assets[i], prices[i], block.timestamp, msg.sender);
         }
     }

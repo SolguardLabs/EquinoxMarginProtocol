@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {EquinoxMarginProtocol} from "../EquinoxMarginProtocol.sol";
-import {AccountTypes} from "../libraries/AccountTypes.sol";
+import { EquinoxMarginProtocol } from "../EquinoxMarginProtocol.sol";
+import { AccountTypes } from "../libraries/AccountTypes.sol";
 
 contract EquinoxLens {
     struct AssetView {

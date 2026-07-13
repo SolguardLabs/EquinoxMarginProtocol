@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IEquinoxOracle} from "./interfaces/IEquinoxOracle.sol";
-import {IEquinoxToken} from "./interfaces/IEquinoxToken.sol";
-import {AccountTypes} from "./libraries/AccountTypes.sol";
-import {FixedPoint} from "./libraries/FixedPoint.sol";
-import {InterestRateModel} from "./libraries/InterestRateModel.sol";
-import {RiskMath} from "./libraries/RiskMath.sol";
+import { IEquinoxOracle } from "./interfaces/IEquinoxOracle.sol";
+import { IEquinoxToken } from "./interfaces/IEquinoxToken.sol";
+import { AccountTypes } from "./libraries/AccountTypes.sol";
+import { FixedPoint } from "./libraries/FixedPoint.sol";
+import { InterestRateModel } from "./libraries/InterestRateModel.sol";
+import { RiskMath } from "./libraries/RiskMath.sol";
 
 contract EquinoxMarginProtocol {
     using FixedPoint for uint256;
