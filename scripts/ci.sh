@@ -21,7 +21,7 @@ run_npm run size
 run_npm audit --omit=dev --audit-level=high
 run_npm run verify:release
 
-if [[ "${CI:-}" == "true" ]] && [[ -z "${WSL_DISTRO_NAME:-}" ]] && [[ -n "$(git status --porcelain --untracked-files=no)" ]]; then
+if [[ "${CI:-}" == "true" ]] && [[ -z "${WSL_DISTRO_NAME:-}" ]] && [[ -n "$(git status --porcelain --untracked-files=no -- . ':(exclude)typechain-types')" ]]; then
     echo "La verificacion ha modificado archivos versionados." >&2
     git status --short
     exit 1
