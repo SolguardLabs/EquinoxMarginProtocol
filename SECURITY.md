@@ -1,50 +1,73 @@
-# Security Policy
+# Política de seguridad
 
-## Modelo De Seguridad
+## Versiones mantenidas
 
-EquinoxMarginProtocol asume que los tokens registrados siguen semántica ERC-20
-estándar, que el oráculo publica precios frescos y que los mercados se configuran
-con parámetros de riesgo conservadores. La liquidez interna se contabiliza por
-activo y los usuarios operan mediante subcuentas aisladas.
+| Serie   | Estado            |
+| ------- | ----------------- |
+| `1.x`   | Mantenida         |
+| `< 1.0` | Sin mantenimiento |
 
-## Invariantes Esperadas
+`main` representa la integración revisada. `production` debe apuntar al mismo commit promovido, y cada entrega estable usa un tag anotado `vMAJOR.MINOR.PATCH`.
 
-- La liquidez libre de un activo no puede ser retirada por encima del efectivo
-  disponible.
-- Cada posición debe mantener margen suficiente frente al requisito inicial o de
-  mantenimiento aplicable.
-- Las liquidaciones parciales deben reducir exposición, deuda y garantía de forma
-  proporcional al importe repagado.
-- Los índices de intereses deben avanzar de forma monotónica.
-- Los proveedores de liquidez deben recibir shares contra el NAV del pool.
-- Los cambios de configuración solo pueden ser ejecutados por el propietario.
+## Límites de confianza
 
-## Validaciones Automatizadas
+Los contratos validan contabilidad y salud on-chain. La operación debe proteger claves administrativas, calidad del oracle, orden de transacciones, configuración de keepers, políticas de pausa y observabilidad.
 
-La suite de Hardhat cubre apertura de posiciones, cierre, aportación de margen,
-acumulación de intereses, transferencias internas de subcuentas, liquidación
-parcial y accounting de liquidez. La integración continua ejecuta formato,
-compilación y tests.
+```mermaid
+flowchart LR
+    GOV["Governance / multisig"] --> CFG["Asset + market policy"]
+    OR["Oracle publishers"] --> FEED["EquinoxOracle"]
+    K["Keepers"] --> ACC["Accrual + liquidation"]
+    CFG --> CORE["Margin protocol"]
+    FEED --> CORE
+    ACC --> CORE
+    CORE --> EV["Events + state"]
+    EV --> MON["Independent monitoring"]
+```
 
-## Gestión De Dependencias
+## Controles de integración
 
-Las dependencias se administran con npm y Dependabot revisa semanalmente el
-ecosistema npm y GitHub Actions. Las versiones de Solidity se fijan desde
-`hardhat.config.ts`.
+- usar multisig y demora para cambios de propietario, oracle y parámetros;
+- separar publicadores de precio, keepers, tesorería y despliegue;
+- validar `chainId`, dirección, bytecode, versión y confirmations;
+- rechazar precios fuera de ventana o con confianza insuficiente;
+- limitar slippage, gas, notional y exposición por mercado;
+- serializar acciones por subcuenta en servicios que construyan lotes;
+- reconciliar deuda agregada, cash, shares y reservas por activo;
+- mantener runbooks de `pause`, `reduceOnly` y recuperación de oracle.
 
-## Alcance De Revisión
+## Invariantes operativos
 
-La revisión debe incluir:
+```mermaid
+flowchart TD
+    TX["Transacción"] --> AU{"Autorización"}
+    AU -->|no| RJ["Revert"]
+    AU -->|sí| PR{"Precio vigente"}
+    PR -->|no| RJ
+    PR -->|sí| AC["Accrue pool"]
+    AC --> TR["Aplicar transición"]
+    TR --> HE{"Salud + conservación"}
+    HE -->|no| RJ
+    HE -->|sí| CM["Commit + events"]
+```
 
-- `src/EquinoxMarginProtocol.sol`
-- `src/libraries/`
-- `src/oracle/`
-- `src/token/`
-- `tests/`
-- configuración de Hardhat y CI.
+```text
+pool.cash + poolDebtCurrent >= reserveBalance
+pool.borrowIndex >= 1e18
+account debt principal = 0  =>  account debt index = 0
+withdraw amount <= previewLiquidityWithdrawal
+liquidation repay <= closeFactor × currentDebt
+healthy transition => weightedCollateral + PnL >= debt + requirements
+```
 
-## Reporte Interno
+Un evento no sustituye una lectura de estado confirmada. Los indexadores deben tolerar reorganizaciones y volver a calcular desde el último bloque finalizado.
 
-Un reporte debe incluir descripción del impacto, precondiciones, secuencia de
-transacciones, cuentas afectadas, activos afectados, estimación económica,
-recomendación de mitigación y pruebas de regresión propuestas.
+## Comunicación responsable
+
+Utilice **GitHub Security Advisories** en la pestaña Security. No publique escenarios de impacto económico en issues abiertos.
+
+Incluya versión, commit, red, bloque, contratos, precondiciones, transacciones mínimas, resultado observado, impacto por activo y una prueba de regresión propuesta. El equipo confirmará recepción, reproducirá el caso en un fork aislado y coordinará el siguiente paso.
+
+## Dependencias y secretos
+
+Los contratos no consumen secretos. Los secretos de RPC, despliegue y verificación pertenecen al entorno de CI y deben usar permisos mínimos. El runtime on-chain no depende de paquetes npm; el audit automatizado separa por ello dependencias de producción y herramientas de desarrollo.
