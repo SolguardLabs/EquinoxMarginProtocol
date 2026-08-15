@@ -16,7 +16,6 @@
 # Dependencias y herramientas auxiliares
 /node_modules/
 /.idea/
-package-lock.json
 
 # Variables y datos locales
 .env

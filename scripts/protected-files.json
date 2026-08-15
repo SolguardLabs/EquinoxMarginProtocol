@@ -1,0 +1,5 @@
+{
+    "src/EquinoxMarginProtocol.sol": "548731b1fc05fe9040a2f1f85d4028fd6190230a",
+    "src/libraries/InterestRateModel.sol": "5675945e22c1f7844d36e276b276b51e39a15612",
+    "src/libraries/AccountTypes.sol": "85b5b45f0e9acb063fd9d0461031d7b43ca21a43"
+}

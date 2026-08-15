@@ -15,6 +15,8 @@ import type * as token from "./token";
 export type { token };
 export type { EquinoxMarginProtocol } from "./EquinoxMarginProtocol";
 export * as factories from "./factories";
+export type { CapitalStressEngine } from "./core/CapitalStressEngine";
+export { CapitalStressEngine__factory } from "./factories/core/CapitalStressEngine__factory";
 export type { EquinoxLens } from "./core/EquinoxLens";
 export { EquinoxLens__factory } from "./factories/core/EquinoxLens__factory";
 export type { ExecutionCodec } from "./core/ExecutionCodec";
