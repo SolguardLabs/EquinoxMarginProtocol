@@ -1,22 +1,25 @@
 {
     "name": "equinox-margin-protocol",
     "version": "1.0.0",
-    "description": "Isolated-account multiasset margin protocol",
+    "description": "Motor de margen multi-activo con subcuentas aisladas y liquidacion determinista.",
     "private": true,
     "scripts": {
         "compile": "hardhat compile",
         "test": "hardhat test",
-        "lint": "prettier --check \"src/**/*.sol\" \"tests/**/*.ts\" \"*.md\" \"*.json\" \".github/**/*.yml\"",
-        "format": "prettier --write \"src/**/*.sol\" \"tests/**/*.ts\" \"*.md\" \"*.json\" \".github/**/*.yml\"",
-        "fmt": "prettier --config .prettierrc --ignore-path .prettierignore --write .",
-        "ci": "npm run lint && npm run compile && npm test"
+        "typecheck": "tsc --noEmit",
+        "lint": "prettier --check \"src/core/CapitalStressEngine.sol\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \"*.json\" \".github/**/*.yml\"",
+        "format": "prettier --write \"src/core/CapitalStressEngine.sol\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \"*.json\" \".github/**/*.yml\"",
+        "loc": "node scripts/check-loc.mjs",
+        "size": "node scripts/check-contract-size.mjs",
+        "verify:release": "node scripts/verify-release.mjs",
+        "ci": "bash scripts/ci.sh"
     },
     "devDependencies": {
-        "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-        "hardhat": "^2.26.3",
-        "prettier": "^3.6.2",
-        "prettier-plugin-solidity": "^1.4.3",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.8.3"
+        "@nomicfoundation/hardhat-toolbox": "6.1.2",
+        "hardhat": "2.29.0",
+        "prettier": "3.9.6",
+        "prettier-plugin-solidity": "1.4.3",
+        "ts-node": "10.9.2",
+        "typescript": "5.9.3"
     }
 }

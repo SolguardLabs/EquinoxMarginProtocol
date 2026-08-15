@@ -14,6 +14,10 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
+      name: "CapitalStressEngine",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CapitalStressEngine__factory>;
+    getContractFactory(
       name: "EquinoxLens",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.EquinoxLens__factory>;
@@ -55,6 +59,11 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.EquinoxERC20__factory>;
 
     getContractAt(
+      name: "CapitalStressEngine",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.CapitalStressEngine>;
+    getContractAt(
       name: "EquinoxLens",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -106,6 +115,10 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.EquinoxERC20>;
 
     deployContract(
+      name: "CapitalStressEngine",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CapitalStressEngine>;
+    deployContract(
       name: "EquinoxLens",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EquinoxLens>;
@@ -146,6 +159,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.EquinoxERC20>;
 
+    deployContract(
+      name: "CapitalStressEngine",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CapitalStressEngine>;
     deployContract(
       name: "EquinoxLens",
       args: any[],

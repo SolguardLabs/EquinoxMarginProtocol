@@ -1,4 +1,5 @@
 import { ethers } from "hardhat";
+import type { EquinoxMarginProtocol, EquinoxOracle, MockERC20 } from "../../typechain-types";
 
 export const ASSETS = {
     USDC: ethers.encodeBytes32String("USDC"),
@@ -22,14 +23,14 @@ export async function deployEquinoxFixture() {
     const [deployer, lp, trader, liquidator, treasury] = await ethers.getSigners();
 
     const Oracle = await ethers.getContractFactory("EquinoxOracle");
-    const oracle = await Oracle.deploy(deployer.address);
+    const oracle = (await Oracle.deploy(deployer.address)) as unknown as EquinoxOracle;
     await oracle.waitForDeployment();
     await oracle.setMaxDelay(400n * 24n * 60n * 60n);
 
     const MockERC20 = await ethers.getContractFactory("MockERC20");
-    const usdc = await MockERC20.deploy("Equinox USD", "eUSD", 18);
-    const weth = await MockERC20.deploy("Wrapped Ether", "WETH", 18);
-    const wbtc = await MockERC20.deploy("Wrapped Bitcoin", "WBTC", 18);
+    const usdc = (await MockERC20.deploy("Equinox USD", "eUSD", 18)) as unknown as MockERC20;
+    const weth = (await MockERC20.deploy("Wrapped Ether", "WETH", 18)) as unknown as MockERC20;
+    const wbtc = (await MockERC20.deploy("Wrapped Bitcoin", "WBTC", 18)) as unknown as MockERC20;
     await Promise.all([
         usdc.waitForDeployment(),
         weth.waitForDeployment(),
@@ -37,7 +38,9 @@ export async function deployEquinoxFixture() {
     ]);
 
     const Protocol = await ethers.getContractFactory("EquinoxMarginProtocol");
-    const protocol = await Protocol.deploy(await oracle.getAddress());
+    const protocol = (await Protocol.deploy(
+        await oracle.getAddress(),
+    )) as unknown as EquinoxMarginProtocol;
     await protocol.waitForDeployment();
 
     await oracle.postPrices(
