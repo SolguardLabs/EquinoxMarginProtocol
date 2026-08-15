@@ -18,7 +18,7 @@
         "@nomicfoundation/hardhat-toolbox": "6.1.2",
         "hardhat": "2.29.0",
         "prettier": "3.9.6",
-        "prettier-plugin-solidity": "1.4.3",
+        "prettier-plugin-solidity": "2.4.1",
         "ts-node": "10.9.2",
         "typescript": "5.9.3"
     }
