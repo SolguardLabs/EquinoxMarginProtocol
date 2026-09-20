@@ -1,11 +1,13 @@
-# EquinoxMarginProtocol
+<h1 align="center">EquinoxMarginProtocol</h1>
+
+<p align="center">
+    [![CI](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml)
+    [![Release Integrity](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml)
+    [![Solidity 0.8.24](https://img.shields.io/badge/Solidity-0.8.24-363636.svg)](https://soliditylang.org/)
+    [![Node 24](https://img.shields.io/badge/Node-24-5FA04E.svg)](https://nodejs.org/)
+</p>
 
 ![EquinoxMarginProtocol](./assets/banner.png)
-
-[![CI](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml)
-[![Release Integrity](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml)
-[![Solidity 0.8.24](https://img.shields.io/badge/Solidity-0.8.24-363636.svg)](https://soliditylang.org/)
-[![Node 24](https://img.shields.io/badge/Node-24-5FA04E.svg)](https://nodejs.org/)
 
 EquinoxMarginProtocol es un motor de margen multi-activo con subcuentas aisladas, pools de liquidez, mercados perpetuos, interés por utilización y liquidación parcial. Los contratos mantienen toda la contabilidad en unidades enteras, separan configuración de activos y mercados y exponen snapshots de salud reproducibles.
 
