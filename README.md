@@ -1,10 +1,10 @@
 <h1 align="center">EquinoxMarginProtocol</h1>
 
 <p align="center">
-    [![CI](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml)
-    [![Release Integrity](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml/badge.svg)](https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml)
-    [![Solidity 0.8.24](https://img.shields.io/badge/Solidity-0.8.24-363636.svg)](https://soliditylang.org/)
-    [![Node 24](https://img.shields.io/badge/Node-24-5FA04E.svg)](https://nodejs.org/)
+    <a href="https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/ci.yml/badge.svg" /></a>
+    <a href="https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml"><img alt="Release" src="https://github.com/SolguardLabs/EquinoxMarginProtocol/actions/workflows/release-integrity.yml/badge.svg" /></a>
+    <a href="https://soliditylang.org/"><img alt="Solidity 0.8.24" src="https://img.shields.io/badge/Solidity-0.8.24-363636.svg" /></a>
+    <a href="https://nodejs.org/"><img alt="Node 24" src="https://img.shields.io/badge/Node-24-5FA04E.svg" /></a>
 </p>
 
 ![EquinoxMarginProtocol](./assets/banner.png)
